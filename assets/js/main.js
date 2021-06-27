@@ -38,7 +38,8 @@ function showMessage(msg, type) {
   document.getElementById("text_msg").innerHTML = msg;
   document.getElementById("msg").style.display = "block";
   document.getElementsByClassName("message")[0].classList.add(type);
-  document.getElementsByClassName("message")[0].style.left='35%';
+  
+  document.getElementsByClassName("message")[0].style.left= type==='success' ? '35%' : '43%';
 
   setTimeout(function () {
     document.getElementById("msg").style.display = "none";
