@@ -49,7 +49,7 @@ function showMessage(msg, type) {
 // contact form post
 async function submitForm(event) {
   event.preventDefault();
-  const url = "http://localhost:8000/api/contact";
+  const url = "https://krishnajhapate.herokuapp.com/api/contact";
   const name = document.getElementById("name");
   const email = document.getElementById("email");
   const project = document.getElementById("project");
