@@ -398,6 +398,9 @@ img {
   position: relative;  
   display:none;
 }
+
+
+
 .message{
   position: fixed;
   display:flex;
