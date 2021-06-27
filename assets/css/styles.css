@@ -395,21 +395,29 @@ img {
 /* Messages */
 
 .message__show{
-  position: relative;
+  position: relative;  
+  display:none;
 }
 .message{
-  height: 1vh;
-  width:1vw;
   position: fixed;
+  display:flex;
+  justify-content: center;
+  align-items: center;
   left: 40%;
   bottom: 5%;
-  background-color: var(--first-color);
   border-radius:.5rem;
   color:white;
   padding:.5rem 2rem;
   z-index: 10;
   opacity: .9;
   transition: 0.5s;
+  font-size: .8 rem;
+}
+.success{
+  background-color: rgb(54 156 54 / 82%);
+}
+.error{
+  background-color:rgb(234 91 91 / 75%);
 }
 
 /*==================== ABOUT ====================*/
@@ -1087,6 +1095,7 @@ img {
 }
 /* For medium devices */
 @media screen and (min-width: 568px) {
+  
   .home__content {
     grid-template-columns: max-content 1fr 1fr;
   }
@@ -1119,7 +1128,21 @@ img {
   }
 }
 
+@media screen and (max-width:768px){
+  .message{
+    left: 30%;
+    bottom:12%;
+  }
+}
+
+@media screen and (max-width:568px){
+  .message{
+    left: 20%;
+    bottom:8%;
+  }
+}
 @media screen and (min-width: 768px) {
+ 
   .container {
     margin-left: auto;
     margin-right: auto;

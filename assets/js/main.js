@@ -33,6 +33,18 @@ window.addEventListener("load", () => {
   document.querySelector(".body__content").style.display = "block";
 });
 
+// function show messages
+function showMessage(msg, type) {
+  document.getElementById("text_msg").innerHTML = msg;
+  document.getElementById("msg").style.display = "block";
+  document.getElementsByClassName("message")[0].classList.add(type);
+  document.getElementsByClassName("message")[0].style.left='35%';
+
+  setTimeout(function () {
+    document.getElementById("msg").style.display = "none";
+  }, 3000);
+}
+
 // contact form post
 async function submitForm(event) {
   event.preventDefault();
@@ -41,56 +53,63 @@ async function submitForm(event) {
   const email = document.getElementById("email");
   const project = document.getElementById("project");
   const message = document.getElementById("message");
-  console.log(name.value, email.value, project.value, message.value);
+  console.log(name.value.length, email.value, project.value, message.value);
+  let error = false;
+
+  function validateEmail(email) {
+    const re =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return re.test(email);
+  }
+
+  // if (name.value.length <= 3) {
+  //   error = true;
+  //   showMessage("Name should be greater than three characters", "error");
+  // }
+  if (!validateEmail(email.value)) {
+    error = true;
+    showMessage("Invalid email", "error");
+  }
+
+  
+
+  // console.log(document.getElementById("msg"));
+
   data = {
-    name: "name",
-    email: "email@email.com",
-    project: "project",
-    message: "message",
+    name: name?.value,
+    email: email?.value,
+    project: project?.value,
+    message: message?.value,
   };
 
-  // Default options are marked with *
-  const response = await fetch(url, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    mode: "no-cors", // no-cors, *cors, same-origin
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Headers":
-        "Origin, X-Requested-With, Content-Type, Accept",
-      // "Access-Control-Allow-Origin": "http://127.0.0.1:5500/index.html",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
-    },
-    body: JSON.stringify({
-      name: "name",
-      email: "email@email.com",
-      project: "project",
-      message: "message",
-    }), // body data type must match "Content-Type" header
-  })
-    .then((res) => {
-      console.log(res)
-      console.log(res.status)})
-    .catch(function (err) {
-      console.log("Fetch Error :-S", err);
-    });
-  // console.log(response);
-  // console.log(response.json());
-
-  // let messageDisplay = {
-  //   error: "Message not sent! Something went wrong..",
-  //   success: "Message sent ! Thank you for contacting me.",
-  // };
-  // let error;
-  // let msgDiv = document.getElementById("msg");
-  // console.log(msgDiv);
-  // let div = document.createElement("div");
-  // let span = document.createElement('span')
-  // // div.appendChild(span)
-  // document.getElementById('msg').appendChild(div);
-  // console.log(document.getElementsByClassName('message'))
-  // div.class.add('message')
+  if (!error) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "no-cors", // no-cors, *cors, same-origin
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
+    })
+      .then((res) => {
+        // console.log("Sent");
+        showMessage("Message Sent. Thank you for reaching out.", "success");
+        name.value = "";
+        email.value = "";
+        project.value = "";
+        message.value = "";
+      })
+      .catch(function (err) {
+        // console.log("Fetch Error :-S", err);
+        showMessage("Something went wrong", "error");
+      });
+  }
 }
 
 /*==================== MENU SHOW Y HIDDEN ====================*/
