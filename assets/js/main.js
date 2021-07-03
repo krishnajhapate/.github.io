@@ -54,6 +54,7 @@ async function submitForm(event) {
   const email = document.getElementById("email");
   const project = document.getElementById("project");
   const message = document.getElementById("message");
+  
   console.log(name.value.length, email.value, project.value, message.value);
   let error = false;
 
