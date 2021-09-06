@@ -530,22 +530,22 @@ img {
   width: 60%;
 }
 .skills__react {
-  width: 65%;
+  width: 85%;
 }
 .skills__bootstap {
-  width: 80%;
+  width: 90%;
 }
 
 .skills__nodejs {
-  width: 70%;
+  width:50%;
 }
 
 .skills__django {
-  width: 60%;
+  width: 80%;
 }
 
 .skills__python {
-  width: 80%;
+  width: 60%;
 }
 
 .skills__firebase {
