@@ -99,8 +99,8 @@ body.dark-theme {
 .change-theme:hover {
     color: var(--first-color);
 }
-.text-white{
-  color: white !important;
+.text-white {
+    color: white !important;
 }
 
 /*==================== BASE ====================*/
@@ -1344,7 +1344,7 @@ img {
     width: 100%;
     padding: 0;
     margin: 0;
-    background: #ffddf9;
+    background: var(--second-color);
     z-index: 10;
 }
 .loader__content {
